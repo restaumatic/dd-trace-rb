@@ -22,7 +22,7 @@ module Datadog
             # DEV: `{SamplingState}` and `{ParentSpanId`}` are optional
 
             # DEV: We need these to be hex encoded
-            header = "#{digest.trace_id.to_s(16)}-#{digest.span_id.to_s(16)}"
+            header = "#{digest.trace_id.to_s(16).rjust(16, '0')}-#{digest.span_id.to_s(16).rjust(16, '0')}"
 
             if digest.trace_sampling_priority
               sampling_priority = Helpers.clamp_sampling_priority(
